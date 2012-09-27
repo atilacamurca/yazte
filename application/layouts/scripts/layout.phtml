@@ -1,0 +1,89 @@
+<?php
+	$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+	$this->headTitle()->setSeparator(' - ');
+	$this->headTitle('Yazte');
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<?=$this->headMeta(); ?>
+	<?=$this->headTitle(); ?>
+		
+	<? echo $this->headScript()
+      ->prependFile($this->baseUrl('js/bootstrap-tooltip.js'),'text/javascript')
+      ->prependFile($this->baseUrl('js/bootstrap.min.js'),'text/javascript')
+      ->prependFile($this->baseUrl('js/jquery-1.7.1.min.js'),'text/javascript'); ?>
+
+	<?php
+		$this->headLink()->prependStylesheet($this->baseUrl() . '/css/prettify.css');
+		$this->headLink()->prependStylesheet($this->baseUrl() . '/css/docs.css');
+		$this->headLink()->prependStylesheet($this->baseUrl() . '/css/bootstrap-responsive.min.css');
+		echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/bootstrap.min.css');
+	?>
+	<style type="text/css">
+   body {
+      padding-top: 2px; /* 60px to make the container go all the way to the bottom of the topbar */
+      padding-bottom: 60px;
+   }
+
+   .container > footer p {
+      text-align: center; /* center align it with the container */
+   }
+
+   /*section {
+      min-height: 500px;
+   }*/
+   </style>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+         <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="http://code.google.com/p/short-mind/" target="blank">yazte.org</a>
+            <div class="nav-collapse">
+               <ul class="nav">
+                  <li class="active">
+                     <a href="<?=$this->url(array('controller' => 'index',
+                         'action'=> 'index'), null, true) ?>">
+                        <i class="icon-home icon-white"></i> <?php echo _("Home")?></a>
+                  </li>
+                  <li>
+                     <a href="<?=$this->url(array('controller' => 'projects',
+                         'action' => 'create'), null, true) ?>">
+                        <i class="icon-th icon-white"></i> New Project</a>
+                  </li>
+                  <li><a href="<?=$this->url(array('controller' => 'index',
+                         'action' => 'about'), null, true) ?>">
+                        <i class="icon-certificate icon-white"></i> About</a>
+                  </li>
+               </ul>
+            </div><!--/.nav-collapse -->
+         </div>
+      </div>
+   </div>
+
+	<div class="container">
+
+      <section>
+         <div class="page-header">
+            <h1><?= $this->escape($this->title); ?></h1>
+         </div>
+
+         <?=$this->flashMessages(); ?>
+
+         <?=$this->layout()->content; ?>
+      </section>
+
+      <footer class="footer">
+         <p>&copy; Open Fidias 2012 |
+         <a href="https://twitter.com/#!/atilacamurca">@atilacamurca</a></p>
+      </footer>
+
+	</div><!-- /container -->
+</body>
+</html>
