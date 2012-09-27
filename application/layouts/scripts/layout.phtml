@@ -10,6 +10,7 @@
 	<?=$this->headTitle(); ?>
 		
 	<? echo $this->headScript()
+		->prependFile($this->baseUrl('js/general.js'),'text/javascript')
       ->prependFile($this->baseUrl('js/bootstrap-tooltip.js'),'text/javascript')
       ->prependFile($this->baseUrl('js/bootstrap.min.js'),'text/javascript')
       ->prependFile($this->baseUrl('js/jquery-1.7.1.min.js'),'text/javascript'); ?>
@@ -44,22 +45,24 @@
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="http://code.google.com/p/short-mind/" target="blank">yazte.org</a>
+            <a class="brand" href="https://github.com/atilacamurca/yazte" target="blank"
+					title="Yet Another Zend Template Engine"
+					rel="tooltip" data-placement="bottom">yazte.org</a>
             <div class="nav-collapse">
                <ul class="nav">
-                  <li class="active">
+                  <li>
                      <a href="<?=$this->url(array('controller' => 'index',
                          'action'=> 'index'), null, true) ?>">
-                        <i class="icon-home icon-white"></i> <?php echo _("Home")?></a>
+                        <i class="icon-home"></i> <?php echo _("Home")?></a>
                   </li>
                   <li>
                      <a href="<?=$this->url(array('controller' => 'projects',
                          'action' => 'create'), null, true) ?>">
-                        <i class="icon-th icon-white"></i> New Project</a>
+                        <i class="icon-th"></i> New Project</a>
                   </li>
                   <li><a href="<?=$this->url(array('controller' => 'index',
                          'action' => 'about'), null, true) ?>">
-                        <i class="icon-certificate icon-white"></i> About</a>
+                        <i class="icon-certificate"></i> About</a>
                   </li>
                </ul>
             </div><!--/.nav-collapse -->
@@ -79,11 +82,13 @@
          <?=$this->layout()->content; ?>
       </section>
 
-      <footer class="footer">
-         <p>&copy; Open Fidias 2012 |
-         <a href="https://twitter.com/#!/atilacamurca">@atilacamurca</a></p>
-      </footer>
-
 	</div><!-- /container -->
+	
+	<footer class="footer">
+		<div class="container">
+			<p>&copy; Open Fidias 2012 |
+			<a href="https://twitter.com/#!/atilacamurca">@atilacamurca</a></p>
+		</div>
+	</footer>
 </body>
 </html>

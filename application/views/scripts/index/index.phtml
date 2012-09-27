@@ -1,2 +1,63 @@
-<h1>Welcome to the Yazte!</h1>
-<h3>Yet Another Zend Template Engine</h3>
+<?php
+
+/*echo $this->headScript()
+      ->prependFile($this->baseUrl('js/index/index.js'),'text/javascript');*/
+
+$this->title = "Projects";
+$this->headTitle($this->title);
+?>
+
+<div class="row">
+	<?php
+		if (sizeof($this->paginator)):
+	?>
+	<ul class="thumbnails">
+		<?php foreach($this->paginator as $project): ?>
+	  <li class="span4">
+		 <div class="thumbnail">
+			<img src="http://placehold.it/250x150" alt="" class="img-rounded">
+			<h4><?=$this->escape($project['name']) ?></h4>
+			<p><?=$this->escape($project['description']) ?></p>
+			<div class="btn-group">
+				<a href="<?=$this->url(array('controller' => 'projects',
+					'action' => 'show')) ?>" class="btn">Show</a>
+			</div>
+		 </div>
+	  </li>
+	  <?php endforeach; ?>
+	</ul>
+	
+	<div class="row">
+		<div class="span9">
+			<?php echo $this->paginator; ?>
+			<div class="btn-group dropup">
+					<a href="#" class="btn" rel="tooltip" title="Options">
+						<i class="icon-cog"></i>
+					</a>
+					<button class="btn dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="<?= $this->url(array('show_hidden' => 1)) ?>">
+								Show Hidden Projects</a>
+						</li>
+						<li>
+							<a href="<?= $this->url(array('show_hidden' => 2)) ?>">
+								Show Only Hidden</a>
+						</li>
+					</ul>
+				</div>
+		</div>
+	</div>
+	
+	<?php
+		else:
+	?>
+	<div class="alert alert-block">
+		No projects found.
+	</div>
+	<?php
+		endif;
+	?>
+</div>

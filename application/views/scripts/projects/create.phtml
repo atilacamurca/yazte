@@ -1,0 +1,15 @@
+<?php
+
+echo $this->headScript()
+      ->prependFile($this->baseUrl('js/projects/save.js'),'text/javascript');
+
+$this->title = "Create New Project";
+$this->headTitle($this->title);
+?>
+<div class="row">
+   <div class="span16">
+<?php
+   echo $this->form;
+?>
+   </div>
+</div>
