@@ -7,24 +7,12 @@ set_include_path(implode(PATH_SEPARATOR, array(
 )));
 
 require_once "Zend/Db.php";
-//require_once "Zend/Db/Table.php";
 
-class Yazte_Test {
-	
-	function getTemplate($file, $vars = array()) {
-		ob_start();
-		if (file_exists($file)) {
-			include($file);
-		}
-		return ob_get_clean();
-	}
+abstract class Yazte_Template_Abstract {
    
-   /*function getDefaultAdapter() {
-      $dbAdapter = Zend_Db_Table::getDefaultAdapter();
-      var_dump($dbAdapter);
-   }*/
+   const TEST = "Hello abstract";
    
-   function getAdapter() {
+   protected function getAdapter() {
       $db = Zend_Db::factory('PDO_PGSQL', array(
                                                 'host'     => 'localhost',
                                                 'username' => 'postgres',
@@ -40,21 +28,9 @@ class Yazte_Test {
       return $db;
    }
    
-   function listTables() {
+   public function listTables() {
       $tables = $this->getAdapter()->listTables();
-      print_r($tables);
+      //print_r($tables);
       return $tables;
    }
-   
-   function listColumns($table) {
-      $columns = $this->getAdapter()->describeTable($table);
-      print_r($columns);
-   }
 }
-
-$test = new Yazte_Test();
-//echo $test->getTemplate('file.php', array('var1' => 'atilacamurca'));
-$t = $test->listTables();
-$test->listColumns($t[0]);
-
-echo true == null;

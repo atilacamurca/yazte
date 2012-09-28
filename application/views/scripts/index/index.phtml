@@ -15,7 +15,7 @@ $this->headTitle($this->title);
 		<?php foreach($this->paginator as $project): ?>
 	  <li class="span4">
 		 <div class="thumbnail">
-			<img src="http://placehold.it/250x150" alt="" class="img-rounded">
+			<img src="img/250x150.gif" alt="" class="img-rounded">
 			<h4><?=$this->escape($project['name']) ?></h4>
 			<p><?=$this->escape($project['description']) ?></p>
 			<div class="btn-group">
@@ -60,4 +60,16 @@ $this->headTitle($this->title);
 	<?php
 		endif;
 	?>
+</div>
+
+<hr>
+
+<div class="row">
+   <div class="span12">
+      <ul>
+      <? foreach($this->tables  as $t): ?>
+         <li><?=$t ?></li>
+      <? endforeach; ?>
+      </ul>
+   </div>
 </div>
