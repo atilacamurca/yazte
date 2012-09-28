@@ -28,6 +28,10 @@ class IndexController extends Zend_Controller_Action
       require_once "Yazte/Template.php";
       $template = Yazte_Template::factory("Form");
       $this->view->tables = $template->listTables();
+      $col = $template->getTableColumns("projects");
+      $e = new Yazte_Element($col['name']);
+      //print_r($e->getColumnName());
+      $this->view->element = $template->toElementText($e);
    }
 
    public function aboutAction()

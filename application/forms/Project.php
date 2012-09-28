@@ -25,13 +25,13 @@ class Application_Form_Project extends Zend_Form
          array('Label', ''),
       ));
 
-                $description = new Zend_Form_Element_Textarea('description');
-                $description->setLabel('Description')
+      $description = new Zend_Form_Element_Textarea('description');
+      $description->setLabel('Description')
                         ->setRequired(true)
                         ->addFilter('StripTags')
                         ->addFilter('StringTrim')
-         ->setAttrib('rows', 10)
-         ->setAttrib('class', 'input-xlarge span6');
+                        ->setAttrib('rows', 10)
+                        ->setAttrib('class', 'input-xlarge span6');
 
       $description->setDecorators(array(
          'ViewHelper',
@@ -46,18 +46,18 @@ class Application_Form_Project extends Zend_Form
               ->setRequired()
               ->setDescription('Hide or Show this project.')
               ->setDecorators(array(
-         'ViewHelper',
-         'Description',
-         'Errors',
-         array('HtmlTag', ''),
-         array('Label', ''),
-         array('Description', array('tag' => 'label', 'class' => 'checkbox inline')),
-      ));
+                  'ViewHelper',
+                  'Description',
+                  'Errors',
+                  array('HtmlTag', ''),
+                  array('Label', ''),
+                  array('Description', array('tag' => 'label', 'class' => 'checkbox inline')),
+               ));
 
-                $submit = new Zend_Form_Element_Submit('submit');
-                $submit->setAttrib('id', 'submitbutton')
+      $submit = new Zend_Form_Element_Submit('submit');
+      $submit->setAttrib('id', 'submitbutton')
                         ->setLabel('Save')
-         ->setAttrib('class', 'btn btn-primary');
+                        ->setAttrib('class', 'btn btn-primary');
 
       $this->addElements(array($id, $name, $description, $hide, $submit));
 
