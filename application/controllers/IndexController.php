@@ -24,14 +24,6 @@ class IndexController extends Zend_Controller_Action
       Zend_Paginator::setDefaultScrollingStyle();
       Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
       $this->view->assign('paginator', $paginator);
-      
-      require_once "Yazte/Template.php";
-      $template = Yazte_Template::factory("Form");
-      $this->view->tables = $template->listTables();
-      $col = $template->getTableColumns("projects");
-      $e = new Yazte_Element($col['name']);
-      //print_r($e->getColumnName());
-      $this->view->element = $template->toElementText($e);
    }
 
    public function aboutAction()

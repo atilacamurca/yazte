@@ -1,8 +1,5 @@
 <?php
 
-/*echo $this->headScript()
-      ->prependFile($this->baseUrl('js/index/index.js'),'text/javascript');*/
-
 $this->title = "Projects";
 $this->headTitle($this->title);
 ?>
@@ -20,7 +17,7 @@ $this->headTitle($this->title);
 			<p><?=$this->escape($project['description']) ?></p>
 			<div class="btn-group">
 				<a href="<?=$this->url(array('controller' => 'projects',
-					'action' => 'show')) ?>" class="btn">Show</a>
+					'action' => 'show', 'id' => $project['id'])) ?>" class="btn">Show</a>
 			</div>
 		 </div>
 	  </li>
@@ -60,19 +57,4 @@ $this->headTitle($this->title);
 	<?php
 		endif;
 	?>
-</div>
-
-<hr>
-
-<div class="row">
-   <div class="span12">
-      <ul>
-      <? foreach($this->tables  as $t): ?>
-         <li><?=$t ?></li>
-      <? endforeach; ?>
-      </ul>
-   </div>
-   <div class="span12">
-      <?=$this->element ?>
-   </div>
 </div>
