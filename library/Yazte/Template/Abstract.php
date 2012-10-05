@@ -10,49 +10,49 @@ require_once "Zend/Db.php";
 
 abstract class Yazte_Template_Abstract {
    
-   const TEST = "Hello abstract";
    protected $_template;
-   //protected $_resource;
+   protected $_db;
    
-   public function __construct($template = "Default") {
-      //$this->_resource = $resource;
+   public function __construct($db, $template = "Default") {
       $this->_template = $template;
-   }
-   
-   protected function getAdapter() {
-      $db = Zend_Db::factory('PDO_PGSQL', array(
-                                                'host'     => 'localhost',
-                                                'username' => 'postgres',
-                                                'password' => 'postgres',
-                                                'dbname'   => 'yazte'
-                                            ));
-      //var_dump($db);
-      //$db->setFetchMode(Zend_Db::FETCH_OBJ);
-      //$row = $db->fetchAll("select name from projects");
-      
-      //echo $row[0]->name;
-      //echo "\n";
-      return $db;
+      $this->_db = $db;
    }
    
    public function listTables() {
-      $tables = $this->getAdapter()->listTables();
-      //print_r($tables);
+      $tables = $this->_db->listTables();
       return $tables;
    }
    
    public function getTableColumns($table) {
-      $columns = $this->getAdapter()->describeTable($table);
+      $columns = $this->_db->describeTable($table);
       return $columns;
    }
    
-   protected function getTemplate($file, $var) {
-      //print_r(file_exists(realpath(dirname(__FILE__) . '/Default/Text.php')));
+   protected function getFormName($tableName) {
+      $len = strlen($tableName);
+      return ucfirst( substr($tableName, 0, $len - 1) );
+   }
+   
+   protected function endsWith($string, $end) {
+      $length = strlen($end);
+      if ($length == 0) {
+         return true;
+      }
+      return (substr($string, -$length) === $end);
+   }
+   
+   protected function startsWith($string, $start) {
+      $length = strlen($start);
+      return (substr($string, 0, $length) === $start);
+   }
+   
+   protected function getTemplate($file, $params = array()) {
       ob_start();
-		//if (file_exists('Template/' . $this->_template . '/' . $file . '.php')) {
       if(file_exists(realpath(dirname(__FILE__) . "/$this->_template/$file.php"))) {
 			include(realpath(dirname(__FILE__) . "/$this->_template/$file.php"));
 		}
 		return ob_get_clean();
    }
+   
+   abstract protected function generate($tableName, $columns = array());
 }

@@ -7,7 +7,6 @@ set_include_path(implode(PATH_SEPARATOR, array(
 )));
 
 require_once "Zend/Db.php";
-//require_once "Zend/Db/Table.php";
 
 class Yazte_Test {
 	
@@ -19,11 +18,6 @@ class Yazte_Test {
 		return ob_get_clean();
 	}
    
-   /*function getDefaultAdapter() {
-      $dbAdapter = Zend_Db_Table::getDefaultAdapter();
-      var_dump($dbAdapter);
-   }*/
-   
    function getAdapter() {
       $db = Zend_Db::factory('PDO_PGSQL', array(
                                                 'host'     => 'localhost',
@@ -31,12 +25,6 @@ class Yazte_Test {
                                                 'password' => 'postgres',
                                                 'dbname'   => 'yazte'
                                             ));
-      //var_dump($db);
-      //$db->setFetchMode(Zend_Db::FETCH_OBJ);
-      //$row = $db->fetchAll("select name from projects");
-      
-      //echo $row[0]->name;
-      //echo "\n";
       return $db;
    }
    
@@ -53,8 +41,7 @@ class Yazte_Test {
 }
 
 $test = new Yazte_Test();
-//echo $test->getTemplate('file.php', array('var1' => 'atilacamurca'));
 $t = $test->listTables();
 $test->listColumns($t[0]);
+echo "\n";
 
-echo true == null;

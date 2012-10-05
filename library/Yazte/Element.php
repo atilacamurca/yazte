@@ -27,6 +27,11 @@ class Yazte_Element {
    /**
     * @var string
     */
+   private $_tableName;
+   
+   /**
+    * @var string
+    */
    private $_columnName;
    
    /**
@@ -60,6 +65,7 @@ class Yazte_Element {
    private $_primary;
    
    public function __construct($array) {
+      $this->_tableName    = $array['TABLE_NAME'];
       $this->_columnName   = $array['COLUMN_NAME'];
       $this->_dataType     = $array['DATA_TYPE'];
       $this->_default      = $array['DEFAULT'];
@@ -67,6 +73,15 @@ class Yazte_Element {
       $this->_length       = $array['LENGTH'];
       $this->_precision    = $array['PRECISION'];
       $this->_primary      = $array['PRIMARY'];
+   }
+   
+   public function getTableName() {
+      return $this->_tableName;
+   }
+   
+   public function getFormName() {
+      $len = strlen($this->_tableName);
+      return ucfirst(substring($this->_tableName, 0, $len - 2));
    }
    
    public function getColumnName() {
@@ -95,5 +110,9 @@ class Yazte_Element {
    
    public function isPrimary() {
       return true == $this->_primary;
+   }
+   
+   public function getLabel() {
+      return ucfirst( str_replace( '_', ' ', $this->_columnName ) );
    }
 }

@@ -2,7 +2,25 @@
 
 class Yazte_Template {
    
-   public static function factory($name) {
+   public static function getAdapter(
+      $adapter = "PDO_PGSQL",
+      $params = array(
+            'host'     => 'localhost',
+            'username' => 'postgres',
+            'password' => 'postgres',
+            'dbname'   => 'postgres'
+         )
+   )
+   {
+      return Zend_Db::factory($adapter, $params);
+   }
+   
+   public static function listTables($db) {
+      $tables = $db->listTables();
+      return $tables;
+   }
+   
+   public static function factory($name, $db) {
       
       if (!is_string($name) || empty($name)) {
          throw new Exception('Name must be specified in a string');
@@ -19,7 +37,7 @@ class Yazte_Template {
          Zend_Loader::loadClass($adapterName);
       }
       
-      $templateAdapter = new $adapterName();
+      $templateAdapter = new $adapterName($db);
       
       if (! $templateAdapter instanceof Yazte_Template_Abstract ) {
          throw new Exception("Adapter class '$templateAdapter' does not extend Yazte_Template_Abstract");
