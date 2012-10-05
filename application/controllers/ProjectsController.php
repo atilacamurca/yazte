@@ -49,17 +49,13 @@ class ProjectsController extends Zend_Controller_Action
    }
 
    public function showAction() {
-      $db = Yazte_Template::getAdapter("PDO_PGSQL", array(
-            'host'     => 'localhost',
-            'username' => 'postgres',
-            'password' => 'postgres',
-            'dbname'   => 'yazte'
-         ));
+      $id = $this->_getParam('id', 0);
+      $model = new Application_Model_DbTable_Projects();
       
       // projects pagination
       $page = $this->_getParam('page', 1);
       
-      $tables = Yazte_Template::listTables($db);
+      $tables = Yazte_Template::listTables($model->getDb($id));
       $paginator = Zend_Paginator::factory($tables);
       $paginator->setCurrentPageNumber($page)
               ->setItemCountPerPage(8);
@@ -71,13 +67,10 @@ class ProjectsController extends Zend_Controller_Action
    
    public function formAction() {
       $table = $this->_getParam('table', 'none');
-      $db = Yazte_Template::getAdapter("PDO_PGSQL", array(
-         'host'     => 'localhost',
-         'username' => 'postgres',
-         'password' => 'postgres',
-         'dbname'   => 'yazte'
-      ));
-      $template = Yazte_Template::factory("Form", $db);
+      $id = $this->_getParam('id', 0);
+      $model = new Application_Model_DbTable_Projects();
+      
+      $template = Yazte_Template::factory("Form", $model->getDb($id));
       $cols = $template->getTableColumns($table);
       if (! empty( $cols )) {
          $this->view->code = $template->generate($table, $cols);
@@ -89,13 +82,10 @@ class ProjectsController extends Zend_Controller_Action
    
    public function controllerAction() {
       $table = $this->_getParam('table', 'none');
-      $db = Yazte_Template::getAdapter("PDO_PGSQL", array(
-         'host'     => 'localhost',
-         'username' => 'postgres',
-         'password' => 'postgres',
-         'dbname'   => 'yazte'
-      ));
-      $template = Yazte_Template::factory("Controller", $db);
+      $id = $this->_getParam('id', 0);
+      $model = new Application_Model_DbTable_Projects();
+      
+      $template = Yazte_Template::factory("Controller", $model->getDb($id));
       $cols = $template->getTableColumns($table);
       if (! empty( $cols )) {
          $this->view->code = $template->generate($table, $cols);
