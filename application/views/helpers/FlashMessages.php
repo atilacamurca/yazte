@@ -14,6 +14,9 @@ class Zend_View_Helper_FlashMessages extends Zend_View_Helper_Abstract {
 
    public function flashMessages() {
       $messages = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger')->getMessages();
+      $messages = array_merge( $messages,
+         Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger')->getCurrentMessages()
+      );
       $output = '';
 
       if (!empty($messages)) {
