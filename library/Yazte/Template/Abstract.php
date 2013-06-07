@@ -29,8 +29,7 @@ abstract class Yazte_Template_Abstract {
    }
    
    protected function getFormName($tableName) {
-      $len = strlen($tableName);
-      return ucfirst( substr($tableName, 0, $len - 1) );
+      return ucfirst( $tableName );
    }
    
    protected function endsWith($string, $end) {

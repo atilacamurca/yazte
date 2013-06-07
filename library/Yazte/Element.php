@@ -21,7 +21,6 @@ class Yazte_Element {
             [PRIMARY_POSITION] => 
             [IDENTITY] => 
         )
-
     */
    
    /**

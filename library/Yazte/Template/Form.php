@@ -17,7 +17,7 @@ class Yazte_Template_Form extends Yazte_Template_Abstract {
          
          switch ($col['DATA_TYPE']) {
          case 'int4':
-            if ('id' == $col['COLUMN_NAME']) {
+            if ($col['PRIMARY']) {
                $doc .= $this->toElementId($e);
             } else if ($this->endsWith($col['COLUMN_NAME'], "_id") or
                   $this->startsWith($col['COLUMN_NAME'], "id_")) {
@@ -43,7 +43,8 @@ class Yazte_Template_Form extends Yazte_Template_Abstract {
    }
    
    protected function toFormHeader($tableName, $columns) {
-      return $this->getTemplate('Form/FormHeader', array($this->getFormName($tableName), $columns));
+      return $this->getTemplate('Form/FormHeader',
+         array($this->getFormName($tableName), $tableName, $columns));
    }
    
    protected function toFormFooter() {

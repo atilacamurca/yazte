@@ -58,7 +58,7 @@ class ProjectsController extends Zend_Controller_Action
       $tables = Yazte_Template::listTables($model->getDb($id));
       $paginator = Zend_Paginator::factory($tables);
       $paginator->setCurrentPageNumber($page)
-              ->setItemCountPerPage(8);
+              ->setItemCountPerPage(10);
 
       Zend_Paginator::setDefaultScrollingStyle();
       Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');

@@ -42,6 +42,6 @@ class Yazte_Test {
 
 $test = new Yazte_Test();
 $t = $test->listTables();
-$test->listColumns($t[0]);
+$test->listColumns('projects');
 echo "\n";
 
