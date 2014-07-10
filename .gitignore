@@ -6,3 +6,4 @@ extras/documentation
 library/*/Zend
 
 /.zfproject.xml
+/nbproject/private/

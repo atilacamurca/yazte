@@ -24,5 +24,6 @@ create table projects(
    db_host varchar(100) not null,
    db_username varchar(20) not null,
    db_password varchar(20) not null,
-   db_name varchar(20) not null
+   db_name varchar(20) not null,
+   template character varying(64) DEFAULT 'Default'::character varying not null,
 );
