@@ -24,7 +24,7 @@ class Yazte_Template_Form extends Yazte_Template_Abstract {
                             or $this->startsWith($e->getColumnName(), "id_")) {
                         $doc .= $this->toElementSelect($e);
                     } else {
-                        $doc .= TODO;
+                        $doc .= $this->toElementNumeric($e);
                     }
                     break;
                 case 'varchar':
@@ -40,12 +40,17 @@ class Yazte_Template_Form extends Yazte_Template_Abstract {
                 case 'numeric':
                     $doc .= $this->toElementNumeric($e);
                     break;
+                case 'bool':
+                    $doc .= $this->toElementBoolean($e);
+                    break;
                 default:
-                    $doc .= TODO . $e->getDataType();
+                    $doc .= TODO;
             }
         }
 
         $doc .= $this->toFormFooter();
+        
+        $doc .= $this->toFilterClass($tableName);
 
         return $doc;
     }
@@ -84,5 +89,15 @@ class Yazte_Template_Form extends Yazte_Template_Abstract {
     
     protected function toElementNumeric(Yazte_Element $element) {
         return $this->getTemplate('Form/Numeric', array($element));
+    }
+    
+    protected function toElementBoolean(Yazte_Element $element) {
+        return $this->getTemplate('Form/Boolean', array($element));
+    }
+    
+    protected function toFilterClass($tableName) {
+        if (file_exists(realpath(dirname(__FILE__) . '/' . $this->_template . '/Filter'))) {
+            return $this->getTemplate('Filter/Class', array($this->getFormName($tableName)));
+        }
     }
 }

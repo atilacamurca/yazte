@@ -46,11 +46,11 @@ abstract class Yazte_Template_Abstract {
    }
    
    protected function getTemplate($file, $params = array()) {
-      ob_start();
-      if(file_exists(realpath(dirname(__FILE__) . "/$this->_template/$file.php"))) {
-			include(realpath(dirname(__FILE__) . "/$this->_template/$file.php"));
-		}
-		return ob_get_clean();
+       ob_start();
+       if(file_exists(realpath(dirname(__FILE__) . "/$this->_template/$file.php"))) {
+	       include(realpath(dirname(__FILE__) . "/$this->_template/$file.php"));
+       }
+       return ob_get_clean();
    }
    
    abstract protected function generate($tableName, $columns = array());

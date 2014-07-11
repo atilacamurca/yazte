@@ -4,6 +4,7 @@
     $elements = $params[2];
 ?>
 
+&lt;?php
 namespace Application\Form;
 
 use Zend\Form\Form;

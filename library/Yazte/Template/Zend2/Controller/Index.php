@@ -1,5 +1,6 @@
-<? $name = $params[0];
-   $model = $name . 's';
+<?php
+    $name = $params[0];
+    $model = $name . 's';
 ?>
    public function indexAction() {
       $model = new Application_Model_DbTable_<?=$model ?>();

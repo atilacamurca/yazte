@@ -9,12 +9,13 @@
 	<?=$this->headMeta(); ?>
 	<?=$this->headTitle(); ?>
 		
-	<? echo $this->headScript()
-		->prependFile($this->baseUrl('js/general.js'),'text/javascript')
-      ->prependFile($this->baseUrl('js/prettify.js'),'text/javascript')
-      ->prependFile($this->baseUrl('js/bootstrap-tooltip.js'),'text/javascript')
-      ->prependFile($this->baseUrl('js/bootstrap.min.js'),'text/javascript')
-      ->prependFile($this->baseUrl('js/jquery-1.7.1.min.js'),'text/javascript'); ?>
+	<?php
+        echo $this->headScript()
+            ->prependFile($this->baseUrl('js/general.js'),'text/javascript')
+            ->prependFile($this->baseUrl('js/prettify.js'),'text/javascript')
+            ->prependFile($this->baseUrl('js/bootstrap-tooltip.js'),'text/javascript')
+            ->prependFile($this->baseUrl('js/bootstrap.min.js'),'text/javascript')
+            ->prependFile($this->baseUrl('js/jquery-1.7.1.min.js'),'text/javascript'); ?>
 
 	<?php
 		$this->headLink()->prependStylesheet($this->baseUrl() . '/css/prettify.css');

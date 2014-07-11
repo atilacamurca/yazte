@@ -22,7 +22,7 @@ class Yazte_Template {
     public static function factory($name, $db, $template = "Default") {
 
         if (!is_string($name) || empty($name)) {
-            throw new Exception('Name must be specified in a string');
+            throw new Exception('Name must be a string');
         }
 
         $adapterName = 'Yazte_Template_' . $name;
