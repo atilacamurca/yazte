@@ -1,20 +1,14 @@
 <?php
 
-class ProjectsController extends Zend_Controller_Action
-{
+class ProjectsController extends Zend_Controller_Action {
 
-    public function init()
-    {
-        /* Initialize action controller here */
+    public function init() {
     }
 
-    public function indexAction()
-    {
-        // action body
+    public function indexAction() {
     }
 
-    public function createAction()
-    {
+    public function createAction() {
         $form = new Application_Form_Project();
         $form->setDecorators(array('FormElements', 'Form'));
         $this->view->form = $form;
@@ -36,11 +30,11 @@ class ProjectsController extends Zend_Controller_Action
                 try {
                     $model->insert($data);
                     $this->_helper->flashMessenger->addMessage(
-                    array('success' => 'Project successfully created.'));
+                            array('success' => 'Project successfully created.'));
                     $this->_helper->redirector('index', 'index', null, array());
-                } catch(Exception $e) {
+                } catch (Exception $e) {
                     $this->_helper->flashMessenger->addMessage(
-                    array('error' => $e->getMessage()));
+                            array('error' => $e->getMessage()));
                 }
             } else {
                 $form->populate($formData);
@@ -58,7 +52,7 @@ class ProjectsController extends Zend_Controller_Action
         $tables = Yazte_Template::listTables($model->getDb($project));
         $paginator = Zend_Paginator::factory($tables);
         $paginator->setCurrentPageNumber($page)
-        ->setItemCountPerPage(10);
+                ->setItemCountPerPage(10);
 
         Zend_Paginator::setDefaultScrollingStyle();
         Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
@@ -73,22 +67,26 @@ class ProjectsController extends Zend_Controller_Action
 
         $template = Yazte_Template::factory("Form", $model->getDb($project), $project->template);
         $cols = $template->getTableColumns($table);
-        if (! empty( $cols )) {
+        if (!empty($cols)) {
             $this->view->code = $template->generate($table, $cols);
         } else {
             $this->_helper->flashMessenger->addMessage(
-            array('error' => "Table <strong>$table</strong> not found."));
+                    array('error' => "Table <strong>$table</strong> not found."));
         }
     }
 
     public function controllerAction() {
         $this->helper("Controller");
     }
-    
+
     public function modelAction() {
         $this->helper("Model");
     }
     
+    public function viewAction() {
+        $this->helper("View");
+    }
+
     private function helper($layer) {
         $table = $this->_getParam('table', 'none');
         $id = $this->_getParam('id', 0);
@@ -97,11 +95,12 @@ class ProjectsController extends Zend_Controller_Action
 
         $template = Yazte_Template::factory($layer, $model->getDb($project), $project->template);
         $cols = $template->getTableColumns($table);
-        if (! empty( $cols )) {
+        if (!empty($cols)) {
             $this->view->code = $template->generate($table, $cols);
         } else {
             $this->_helper->flashMessenger->addMessage(
-            array('error' => "Table <strong>$table</strong> not found."));
+                    array('error' => "Table <strong>$table</strong> not found."));
         }
     }
+
 }

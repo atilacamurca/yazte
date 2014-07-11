@@ -1,0 +1,18 @@
+<?php
+
+$this->title = "View";
+$this->headTitle($this->title);
+?>
+<?php if ($this->code): ?>
+<div class="row">
+   <div class="span12">
+      <pre class="prettyprint">
+<?php
+    $aux = str_replace("&lt;", "<", $this->code);
+    $aux = str_replace("&gt;", ">", $aux);
+?>
+<?=$this->escape($aux) ?>
+      </pre>
+   </div>
+</div>
+<?php endif; ?>
