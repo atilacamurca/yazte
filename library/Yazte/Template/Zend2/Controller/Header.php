@@ -1,24 +1,24 @@
 <?php
-    $controller = $params[0];
-    $tableName = $params[1];
+    $className = $params[0];
+    $varName = $params[1];
 ?>
 
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Application\Model\<?=$controller?>;
-use Application\Form\<?=$controller?>Form;
-use Application\Form\<?=$controller?>Filter;
+use Application\Model\<?=$className?>;
+use Application\Form\<?=$className?>Form;
+use Application\Form\<?=$className?>Filter;
 
-class <?=$controller?> extends AbstractActionController {
+class <?=$className?>Controller extends AbstractActionController {
 
-    protected $<?=$tableName?>Table;
+    protected $<?=$varName?>Table;
 
-    public function get<?=$controller?>Table() {
-        if (!$this-><?=$tableName?>Table) {
+    public function get<?=$className?>Table() {
+        if (!$this-><?=$varName?>Table) {
             $sm = $this->getServiceLocator();
-            $this-><?=$tableName?>Table = $sm->get('Application\Model\<?=$controller?>Table');
+            $this-><?=$varName?>Table = $sm->get('Application\Model\<?=$className?>Table');
         }
-        return $this-><?=$tableName?>Table;
+        return $this-><?=$varName?>Table;
     }

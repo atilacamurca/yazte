@@ -56,7 +56,7 @@ class Yazte_Template_Form extends Yazte_Template_Abstract {
     }
 
     protected function toFormHeader($tableName, $columns) {
-        return $this->getTemplate('Form/FormHeader', array($this->getFormName($tableName), $tableName, $columns));
+        return $this->getTemplate('Form/FormHeader', array($this->toClassName($tableName, true), $tableName, $columns));
     }
 
     protected function toFormFooter() {
@@ -97,7 +97,7 @@ class Yazte_Template_Form extends Yazte_Template_Abstract {
     
     protected function toFilterClass($tableName) {
         if (file_exists(realpath(dirname(__FILE__) . '/' . $this->_template . '/Filter'))) {
-            return $this->getTemplate('Filter/Class', array($this->getFormName($tableName)));
+            return $this->getTemplate('Filter/Class', array($this->toClassName($tableName, true)));
         }
     }
 }

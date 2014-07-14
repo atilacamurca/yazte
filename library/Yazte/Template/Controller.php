@@ -14,19 +14,22 @@ class Yazte_Template_Controller extends Yazte_Template_Abstract {
     }
 
     protected function toControllerHeader($tableName) {
-        return $this->getTemplate('Controller/Header', array($this->getFormName($tableName), $tableName));
+        return $this->getTemplate('Controller/Header', array(
+            $this->toClassName($tableName, true),
+            $this->toClassName($tableName, false)
+        ));
     }
 
     protected function toIndexAction($tableName) {
-        return $this->getTemplate('Controller/Index', array($this->getFormName($tableName)));
+        return $this->getTemplate('Controller/Index', array($this->toClassName($tableName, true)));
     }
 
     protected function toCreateAction($tableName) {
-        return $this->getTemplate('Controller/Create', array($this->getFormName($tableName), $tableName));
+        return $this->getTemplate('Controller/Create', array($this->toClassName($tableName, true), $tableName));
     }
 
     protected function toUpdateAction($tableName) {
-        return $this->getTemplate('Controller/Update', array($this->getFormName($tableName), $tableName));
+        return $this->getTemplate('Controller/Update', array($this->toClassName($tableName, true), $tableName));
     }
 
     protected function toDeleteAction($tableName) {

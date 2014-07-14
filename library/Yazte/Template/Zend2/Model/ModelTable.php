@@ -9,8 +9,8 @@
 /* ----------------------------------------------------------------- */
 
 /**
- * Descrição de <?=$name ?>
- <br> *
+ * Descrição de <?=$name ?>Table
+ *
  * @author
  */
 
@@ -21,6 +21,7 @@ use Zend\Db\TableGateway\TableGateway;
 class <?=$name ?>Table {
 
     protected $tableGateway;
+    protected $_sequence = '<?=$tableName ?>_id_seq';
 
     public function __construct(TableGateway $tableGateway) {
          $this->tableGateway = $tableGateway;
@@ -45,9 +46,12 @@ class <?=$name ?>Table {
         $data = array(
 <?php
     foreach($elements as $e):
+        $col = new Yazte_Element($e);
+        if (! $col->isPrimary()):
 ?>
-            '<?=$e['COLUMN_NAME'] ?>' => $<?=$tableName ?>-><?=$e['COLUMN_NAME'] ?>,
+            '<?=$col->getColumnName() ?>' => $<?=$tableName ?>-><?=$col->getColumnName() ?>,
 <?php
+        endif;
     endforeach;
 ?>
         );
@@ -55,6 +59,7 @@ class <?=$name ?>Table {
         $id = (int) $<?=$tableName ?>->id;
         if ($id == 0) {
             $this->tableGateway->insert($data);
+            return $this->tableGateway->getAdapter()->getDriver()->getLastGeneratedValue($this->_sequence);
         } else {
             $this->tableGateway->update($data, array('id' => $id));
         }

@@ -2,6 +2,8 @@
     $name = $params[0];
     $tableName = $params[1];
     $elements = $params[2];
+    $route = str_replace('_', '-', $tableName);
+    $viewName = ucwords(str_replace('_', ' ', $tableName));
 ?>
 
 <!-- ----------------------------------------------------------------- -->
@@ -9,12 +11,12 @@
 <!-- ----------------------------------------------------------------- -->
 
 &lt;?php
-    $this->headScript()->appendFile($this->basePath() . '/js/application/<?=$tableName ?>/salvar.js');
+    $this->headScript()->appendFile($this->basePath() . '/js/application/<?=$route ?>/salvar.js');
 ?&gt;
 
 <ol class="breadcrumb">
     <li><a href="&lt;?php echo $this->url('home') ?&gt;">Início</a></li>
-    <li><a href="&lt;?php echo $this->url('bairro-index') ?&gt;"><?=$name ?></a></li>
+    <li><a href="&lt;?php echo $this->url('<?=$route ?>') ?&gt;"><?=$viewName ?></a></li>
     <li class="active">&lt;?php echo $title ?&gt;</li>
 </ol>
 

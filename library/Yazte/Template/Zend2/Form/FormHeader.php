@@ -4,18 +4,17 @@
     $elements = $params[2];
 ?>
 
-&lt;?php
 namespace Application\Form;
 
 use Zend\Form\Form;
 use Zend\Form\Element;
 
 /**
- * Descrição de <?=$name ?>
- <br> *
+ * Descrição de <?=$name ?>Form
+ *
  * @author
  */
-class <?=$name ?> extends Form {
+class <?=$name ?>Form extends Form {
 
     public function __construct() {
         parent::__construct('<?=$tableName ?>');
@@ -33,7 +32,8 @@ class <?=$name ?> extends Form {
 
     protected function _submit() {
         $e = new Element\Submit('submit');
-        $e->setValue("Salvar")
-            ->setAttribute("class", "btn btn-primary");
+        $e->setValue("Salvar");
+        $e->setAttribute("class", "btn btn-primary");
+        
         return $e;
     }

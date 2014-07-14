@@ -26,7 +26,7 @@ class <?=$name?> {
 <?php
     foreach($elements as $e):
 ?>
-        this->$<?=$e['COLUMN_NAME'] ?> = (!empty($data['<?=$e['COLUMN_NAME'] ?>'])) ? $data['<?=$e['COLUMN_NAME'] ?>'] : null;
+        $this-><?=$e['COLUMN_NAME'] ?> = (!empty($data['<?=$e['COLUMN_NAME'] ?>'])) ? $data['<?=$e['COLUMN_NAME'] ?>'] : null;
 <?php
     endforeach;
 ?>

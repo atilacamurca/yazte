@@ -15,14 +15,14 @@ class Yazte_Template_Model extends Yazte_Template_Abstract {
     }
     
     protected function toModel($tableName, $columns) {
-        return $this->getTemplate('Model/Model', array($this->getFormName($tableName), $tableName, $columns));
+        return $this->getTemplate('Model/Model', array($this->toClassName($tableName, true), $tableName, $columns));
     }
     
     protected function toModelTable($tableName, $columns) {
-        return $this->getTemplate('Model/ModelTable', array($this->getFormName($tableName), $tableName, $columns));
+        return $this->getTemplate('Model/ModelTable', array($this->toClassName($tableName, true), $tableName, $columns));
     }
     
     protected function toModule($tableName) {
-        return $this->getTemplate('Model/Module', array($this->getFormName($tableName), $tableName));
+        return $this->getTemplate('Model/Module', array($this->toClassName($tableName, true), $tableName));
     }
 }
