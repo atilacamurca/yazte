@@ -60,19 +60,7 @@ class ProjectsController extends Zend_Controller_Action {
     }
 
     public function formAction() {
-        $table = $this->_getParam('table', 'none');
-        $id = $this->_getParam('id', 0);
-        $model = new Application_Model_DbTable_Projects();
-        $project = $model->getProject($id);
-
-        $template = Yazte_Template::factory("Form", $model->getDb($project), $project->template);
-        $cols = $template->getTableColumns($table);
-        if (!empty($cols)) {
-            $this->view->code = $template->generate($table, $cols);
-        } else {
-            $this->_helper->flashMessenger->addMessage(
-                    array('error' => "Table <strong>$table</strong> not found."));
-        }
+        $this->helper("Form");
     }
 
     public function controllerAction() {
@@ -82,7 +70,7 @@ class ProjectsController extends Zend_Controller_Action {
     public function modelAction() {
         $this->helper("Model");
     }
-    
+
     public function viewAction() {
         $this->helper("View");
     }
@@ -90,6 +78,7 @@ class ProjectsController extends Zend_Controller_Action {
     private function helper($layer) {
         $table = $this->_getParam('table', 'none');
         $id = $this->_getParam('id', 0);
+        $this->view->id = $id;
         $model = new Application_Model_DbTable_Projects();
         $project = $model->getProject($id);
 

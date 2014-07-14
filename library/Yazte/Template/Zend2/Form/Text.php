@@ -7,6 +7,6 @@
         $e->setLabel('<?=(! $var->isNullable() ? '* ': '')?><?=$var->getLabel() ?>:');
         $e->setAttribute('id', '<?=$var->getColumnName() ?>');
         $e->setAttribute('class', 'form-control');
-        
+
         return $e;
     }

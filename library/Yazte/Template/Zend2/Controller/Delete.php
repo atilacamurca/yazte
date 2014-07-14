@@ -1,27 +1,19 @@
-<? $name = $params[0];
-   $model = $name . 's';
-   $controller = strtolower($model);
-   $view = strtolower($name);
+<?php
+    $name = $params[0];
+    $tableName = $params[1];
 ?>
-   public function deleteAction() {
-      if ($this->getRequest()->isPost()) {
-         $del = $this->getRequest()->getPost('del');
-         if ("Ok" == $del) {
-            $id = $this->getRequest()->getPost('id');
-            $model = new Application_Model_DbTable_<?=$model ?>();
-            try {
-               $model->delete('id = ' . (int) $id);
-               $this->_helper->flashMessenger->addMessage(
-                    array('success' => '<?=$name ?> successfully deleted.'));
-               $this->_helper->redirector('index', '<?=$controller ?>', null, array());
-            } catch(Exception $e) {
-               $this->_helper->flashMessenger->addMessage(
-                     array('error' => $e->getMessage()));
+
+    public function deletarAction() {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        try {
+            $this->get<?=$name?>Table()->deletar($id);
+            $this->messages()->flashSuccess('<?=$name?> deletado(a) com sucesso.');
+        } catch (\Exception $e) {
+            if (preg_match('/23503/', $e->getMessage())) {
+                $this->messages()->flashWarning('<?=$name?> é referenciado(a) e não pode ser deletado(a).');
+            } else {
+                $this->messages()->flashError('Ocorreu um erro ao deletar. Detalhes: ' . $e->getMessage());
             }
-         }
-      } else {
-         $id = $this->_getParam('id', 0);
-         $model = new Application_Model_DbTable_<?=$model ?>();
-         $this->view-><?=$view ?> = $model->fetchRow('id = ' . $id)->toArray();
-      }
-   }
+        }
+        $this->redirect()->toRoute('<?=$tableName?>-index');
+    }

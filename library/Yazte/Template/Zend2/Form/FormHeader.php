@@ -12,7 +12,7 @@ use Zend\Form\Element;
 
 /**
  * Descrição de <?=$name ?>
- <br> * 
+ <br> *
  * @author
  */
 class <?=$name ?> extends Form {
@@ -20,7 +20,7 @@ class <?=$name ?> extends Form {
     public function __construct() {
         parent::__construct('<?=$tableName ?>');
         $this->setAttribute('method', 'post');
-        
+
 <?php
     foreach($elements as $e):
         if (! ('timestamp' == $e['DATA_TYPE'] and $e['DEFAULT']) ): ?>
@@ -30,7 +30,7 @@ class <?=$name ?> extends Form {
     endforeach; ?>
         $this->add($this->_submit());
     }
-   
+
     protected function _submit() {
         $e = new Element\Submit('submit');
         $e->setValue("Salvar")

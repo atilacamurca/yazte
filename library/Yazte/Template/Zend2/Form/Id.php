@@ -8,7 +8,6 @@
         $e->setAttribute('class', 'form-control');
         $e->setLabel('<?=ucfirst($var->getColumnName()) ?>:');
         $e->setAttribute('readonly', 'readonly');
-        $e->setAttribute('disabled', 'disabled');
-        
+
         return $e;
     }

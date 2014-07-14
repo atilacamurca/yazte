@@ -2,6 +2,8 @@
 
 $this->title = "Model";
 $this->headTitle($this->title);
+$this->back = $this->url(array('controller' => 'projects',
+    'action' => 'show', 'id' => $this->id), 'default', true);
 ?>
 <?php if ($this->code): ?>
 <div class="row">
