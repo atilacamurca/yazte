@@ -97,6 +97,19 @@ echo $this->form()->openTag($form);
     </div>
 <?php
             break;
+            case 'text':
+?>
+    <div class="col-md-4">
+        <div class="form-group">
+            &lt;?php echo $this->formLabel($form->get('<?= $col->getColumnName() ?>')); ?&gt;
+            &lt;?php echo $this->formTextarea($form->get('<?= $col->getColumnName() ?>')); ?&gt;
+            <div class="form-errors">
+                &lt;?php echo $this->formElementErrors($form->get('<?= $col->getColumnName() ?>')); ?&gt;
+            </div>
+        </div>
+    </div>
+<?php
+                break;
             default:
 ?>
     <div class="col-md-4">
