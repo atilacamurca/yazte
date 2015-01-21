@@ -5,6 +5,8 @@
     protected function _<?=$var->getColumnName() ?>() {
         $e = new Element\Select('<?=$var->getColumnName() ?>');
         $e->setLabel('<?=(! $var->isNullable() ? '* ': '')?><?=ucfirst($var->getColumnName()) ?>:');
+        $e->setAttribute('id', '<?=$var->getColumnName() ?>');
+        $e->setAttribute('class', 'form-control');
 
         $model = new TableGateway('TABLE', $this->dbAdapter);
         $select = new Select();

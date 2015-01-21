@@ -25,9 +25,18 @@ class <?=$name?> {
     public function exchangeArray($data) {
 <?php
     foreach($elements as $e):
+        $col = new Yazte_Element($e);
+        switch ($col->getDataType()):
+            case 'bool':
+?>
+        $this-><?=$e['COLUMN_NAME'] ?> = (!empty($data['<?=$e['COLUMN_NAME'] ?>'])) ? 't' : 'f';
+<?php
+            break;
+            default:
 ?>
         $this-><?=$e['COLUMN_NAME'] ?> = (!empty($data['<?=$e['COLUMN_NAME'] ?>'])) ? $data['<?=$e['COLUMN_NAME'] ?>'] : null;
 <?php
+        endswitch;
     endforeach;
 ?>
     }

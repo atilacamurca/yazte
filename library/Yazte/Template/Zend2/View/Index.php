@@ -20,10 +20,10 @@
 </ol>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-6 col-md-6">
         <h3><?=$viewName ?></h3>
     </div>
-    <div class="col-md-6">
+    <div class="col-sm-6 col-md-6">
         <a href="&lt;?php echo $this->url('<?=$route ?>', array('action' => 'criar')) ?&gt;" class="btn btn-primary btn-lg pull-right">
             <i class="fa fa-plus"></i> Criar <?=$viewName . "\n" ?>
         </a>
@@ -41,11 +41,11 @@
     foreach($elements as $e):
         $col = new Yazte_Element($e);
 ?>
-                    <td><?=$col->getLabel() ?></td>
+                    <th><?=$col->getLabel() ?></th>
 <?php
     endforeach;
 ?>
-                    <td style="width: 200px;">&nbsp;</td>
+                    <th style="width: 200px;">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>

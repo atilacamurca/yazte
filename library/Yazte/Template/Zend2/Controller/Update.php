@@ -34,14 +34,21 @@
                     $this->messages()->flashSuccess('<?=$viewName?> atualizado(a) com sucesso.');
                     return $this->redirect()->toRoute('<?=$route?>');
                 } catch (\Exception $e) {
-                    $this->messages()->flashError('Ocorreu um erro ao atualizar. Detalhes: ' . $e->getMessage());
+                    if (preg_match('/23505/', $e->getMessage())) {
+                        $this->messages()->flashWarning('<?=$viewName?> já existe.');
+                    } else {
+                        $this->messages()->flashError('Ocorreu um erro ao criar. Detalhes: ' . $e->getMessage());
+                    }
                 }
             }
         }
 
-        return array(
+        $viewModel = new ViewModel(array(
             'id' => $id,
             'form' => $form,
             'title' => 'Editar <?=$viewName?>'
-        );
+        ));
+        $viewModel->setTemplate('application/<?=$route?>/salvar.phtml');
+        
+        return $viewModel;
     }

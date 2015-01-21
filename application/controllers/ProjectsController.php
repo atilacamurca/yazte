@@ -47,16 +47,16 @@ class ProjectsController extends Zend_Controller_Action {
         $model = new Application_Model_DbTable_Projects();
         $project = $model->getProject($id);
         // projects pagination
-        $page = $this->_getParam('page', 1);
+//        $page = $this->_getParam('page', 1);
 
-        $tables = Yazte_Template::listTables($model->getDb($project));
-        $paginator = Zend_Paginator::factory($tables);
-        $paginator->setCurrentPageNumber($page)
-                ->setItemCountPerPage(10);
-
-        Zend_Paginator::setDefaultScrollingStyle();
-        Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
-        $this->view->assign('paginator', $paginator);
+        $result = Yazte_Template::listTables($model->getDb($project));
+//        $paginator = Zend_Paginator::factory($tables);
+//        $paginator->setCurrentPageNumber($page)
+//                ->setItemCountPerPage(10);
+//
+//        Zend_Paginator::setDefaultScrollingStyle();
+//        Zend_View_Helper_PaginationControl::setDefaultViewPartial('pagination.phtml');
+        $this->view->assign('paginator', $result);
     }
 
     public function formAction() {
@@ -77,13 +77,15 @@ class ProjectsController extends Zend_Controller_Action {
 
     private function helper($layer) {
         $table = $this->_getParam('table', 'none');
+        $schema = $this->_getParam('schema', 'none');
         $id = $this->_getParam('id', 0);
+        
         $this->view->id = $id;
         $model = new Application_Model_DbTable_Projects();
         $project = $model->getProject($id);
 
         $template = Yazte_Template::factory($layer, $model->getDb($project), $project->template);
-        $cols = $template->getTableColumns($table);
+        $cols = $template->getTableColumns($table, $schema);
         if (!empty($cols)) {
             $this->view->code = $template->generate($table, $cols);
         } else {

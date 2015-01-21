@@ -23,8 +23,8 @@ abstract class Yazte_Template_Abstract {
         return $tables;
     }
 
-    public function getTableColumns($table) {
-        $columns = $this->_db->describeTable($table);
+    public function getTableColumns($table, $schema) {
+        $columns = $this->_db->describeTable($table, $schema);
         return $columns;
     }
 

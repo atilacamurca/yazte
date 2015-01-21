@@ -36,7 +36,7 @@ echo $this->form()->openTag($form);
             case 'int8':
                 if ($col->isPrimary()):
 ?>
-    <div class="col-md-2">
+    <div class="col-sm-2 col-md-2">
         <div class="form-group">
             &lt;?php echo $this->formRow($form->get('<?=$col->getColumnName() ?>')); ?&gt;
         </div>
@@ -45,7 +45,7 @@ echo $this->form()->openTag($form);
                 elseif ($this->endsWith($col->getColumnName(), "_id")
                             or $this->startsWith($col->getColumnName(), "id_")):
 ?>
-    <div class="col-md-4">
+    <div class="col-sm-6 col-md-4">
         <div class="form-group">
             &lt;?php echo $this->formLabel($form->get('<?=$col->getColumnName() ?>')); ?&gt;
             &lt;?php echo $this->formSelect($form->get('<?=$col->getColumnName() ?>')); ?&gt;
@@ -57,7 +57,7 @@ echo $this->form()->openTag($form);
 <?php
                 else:
 ?>
-    <div class="col-md-4">
+    <div class="col-sm-6 col-md-4">
         <div class="form-group">
             &lt;?php echo $this->formLabel($form->get('<?= $col->getColumnName() ?>')); ?&gt;
             &lt;?php echo $this->formInput($form->get('<?= $col->getColumnName() ?>')); ?&gt;
@@ -74,7 +74,7 @@ echo $this->form()->openTag($form);
             case 'date':
             case 'numeric':
 ?>
-    <div class="col-md-4">
+    <div class="col-sm-6 col-md-4">
         <div class="form-group">
             &lt;?php echo $this->formLabel($form->get('<?=$col->getColumnName() ?>')); ?&gt;
             &lt;?php echo $this->formInput($form->get('<?=$col->getColumnName() ?>')); ?&gt;
@@ -87,7 +87,7 @@ echo $this->form()->openTag($form);
             break;
             case 'bool':
 ?>
-    <div class="col-md-2">
+    <div class="col-sm-2 col-md-2">
         <div class="checkbox">
             <label style="margin-top: 25px;">
                 &lt;?php echo $this->formLabel($form->get('<?=$col->getColumnName() ?>')); ?&gt;
@@ -99,7 +99,7 @@ echo $this->form()->openTag($form);
             break;
             case 'text':
 ?>
-    <div class="col-md-4">
+    <div class="col-sm-6 col-md-4">
         <div class="form-group">
             &lt;?php echo $this->formLabel($form->get('<?= $col->getColumnName() ?>')); ?&gt;
             &lt;?php echo $this->formTextarea($form->get('<?= $col->getColumnName() ?>')); ?&gt;
@@ -112,7 +112,7 @@ echo $this->form()->openTag($form);
                 break;
             default:
 ?>
-    <div class="col-md-4">
+    <div class="col-sm-6 col-md-4">
         <div class="form-group">
             &lt;?php echo $this->formLabel($form->get('<?= $col->getColumnName() ?>')); ?&gt;
             &lt;?php echo $this->formInput($form->get('<?= $col->getColumnName() ?>')); ?&gt;

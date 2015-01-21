@@ -17,6 +17,7 @@
 namespace Application\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\Sql\Select;
 
 class <?=$name ?>Table {
 
@@ -28,7 +29,8 @@ class <?=$name ?>Table {
     }
 
     public function listar() {
-        $resultSet = $this->tableGateway->select();
+        $select = new Select($this->tableGateway->getTable());
+        $resultSet = $this->tableGateway->selectWith($select);
         return $resultSet;
     }
 

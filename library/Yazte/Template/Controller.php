@@ -33,6 +33,6 @@ class Yazte_Template_Controller extends Yazte_Template_Abstract {
     }
 
     protected function toDeleteAction($tableName) {
-        return $this->getTemplate('Controller/Delete', array($this->getFormName($tableName), $tableName));
+        return $this->getTemplate('Controller/Delete', array($this->toClassName($tableName, true), $tableName));
     }
 }
