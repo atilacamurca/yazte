@@ -13,9 +13,9 @@ use Application\Form\<?=$className?>Filter;
 
 class <?=$className?>Controller extends AbstractActionController {
 
-    protected $<?=$varName?>Table;
+    private $<?=$varName?>Table;
 
-    public function get<?=$className?>Table() {
+    private function get<?=$className?>Table() {
         if (!$this-><?=$varName?>Table) {
             $sm = $this->getServiceLocator();
             $this-><?=$varName?>Table = $sm->get('Application\Model\<?=$className?>Table');
